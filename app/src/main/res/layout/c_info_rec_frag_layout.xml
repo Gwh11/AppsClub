@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="      APPs开发社团，顾名思义就是学习各类与软件开发相关的编成语言。其目标是通过开展各类形式多样的活动，普及计算机基础，推广网络使用，以提高学生的计算机知识水平和计算机应用能力为基本任务，以提高同学们对计算机课程的兴趣为基础，把学习性和实践性统一，丰富同学们的课余生活。为同学们将来更好的步入社会奠定良好的基础提供有力保障。"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:background="@drawable/kuang"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/c_info_rec_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_clubInfo"
+            android:icon="@drawable/btn_l_star"
+            android:title="Apps社团详情"/>
+        <item
+            android:id="@+id/nav_clubMember"
+            android:icon="@drawable/btn_l_book"
+            android:title="花名册"/>
+        <item
+            android:id="@+id/nav_clubActivity"
+            android:icon="@drawable/btn_l_grid"
+            android:title="活动详情"/>
+        <item
+            android:id="@+id/nav_clubNotification"
+            android:icon="@drawable/btn_l_speech_3"
+            android:title="通知"/>
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/btn_l_windows"
+            android:title="首页"/>
+        <item
+            android:id="@+id/nav_my"
+            android:icon="@drawable/btn_l_windows"
+            android:title="我的"/>
+    </group>
+</menu>
