@@ -6,6 +6,10 @@ import cn.bmob.v3.BmobObject;
  */
 public class Department extends BmobObject {
     /**
+     * 部门名
+     */
+    private String departName;
+    /**
      * 部门名字
      */
     private String departmentName;
@@ -16,6 +20,14 @@ public class Department extends BmobObject {
 
     public String getDepartmentName() {
         return departmentName;
+    }
+
+    public String getDepartName() {
+        return departName;
+    }
+
+    public void setDepartName(String departName) {
+        this.departName = departName;
     }
 
     public void setDepartmentName(String departmentName) {

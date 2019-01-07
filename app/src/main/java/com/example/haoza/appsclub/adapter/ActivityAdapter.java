@@ -27,14 +27,14 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
     static class ViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView c_activity_rec_item_tv_title;
-        private final Button c_activity_rec_item_btn_ok;
-        private final Button c_activity_rec_item_btn_quit;
+/*        private final Button c_activity_rec_item_btn_ok;
+        private final Button c_activity_rec_item_btn_quit;*/
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             c_activity_rec_item_tv_title = itemView.findViewById(R.id.c_activity_rec_item_tv_title);
-            c_activity_rec_item_btn_ok = itemView.findViewById(R.id.c_activity_rec_item_btn_ok);
-            c_activity_rec_item_btn_quit = itemView.findViewById(R.id.c_activity_rec_item_btn_quit);
+/*            c_activity_rec_item_btn_ok = itemView.findViewById(R.id.c_activity_rec_item_btn_ok);
+            c_activity_rec_item_btn_quit = itemView.findViewById(R.id.c_activity_rec_item_btn_quit);*/
         }
     }
 
@@ -56,7 +56,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
                 replaceFragmentCallBack.replaceActivityInfo(clubActivity);
             }
         });
-        viewHolder.c_activity_rec_item_btn_ok.setOnClickListener(new View.OnClickListener() {
+        /*viewHolder.c_activity_rec_item_btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewHolder.c_activity_rec_item_btn_ok.setEnabled(false);
@@ -71,7 +71,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
                 viewHolder.c_activity_rec_item_btn_quit.setEnabled(false);
                 //取消参加
             }
-        });
+        });*/
     }
 
     @Override

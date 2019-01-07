@@ -87,6 +87,11 @@
                 android:textSize="10sp"
                 android:textColor="#4883FF"/>
         </LinearLayout>
+        <Spinner
+            android:id="@+id/sp_user_department"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            ></Spinner>
         <EditText
             android:id="@+id/et_user_password"
             android:layout_width="match_parent"

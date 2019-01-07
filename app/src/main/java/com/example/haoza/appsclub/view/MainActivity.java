@@ -23,10 +23,12 @@ import com.example.haoza.appsclub.customObject.ClubActivity;
 import com.example.haoza.appsclub.customObject.MyBmobArticle;
 import com.example.haoza.appsclub.customObject.User;
 import com.example.haoza.appsclub.fragment.ClubActivityFragment;
+import com.example.haoza.appsclub.fragment.ClubActivityFragmentPTR;
 import com.example.haoza.appsclub.fragment.ClubActivityInfoFragment;
 import com.example.haoza.appsclub.fragment.ClubInfoFragment;
 import com.example.haoza.appsclub.fragment.ClubMemberFragment;
 import com.example.haoza.appsclub.fragment.ClubNotificationFragment;
+import com.example.haoza.appsclub.fragment.ClubNotificationFragmentPTR;
 import com.example.haoza.appsclub.fragment.HomeFragmentPTR;
 import com.example.haoza.appsclub.fragment.HomeFragmentRec;
 import com.example.haoza.appsclub.fragment.HomeInfoFragment;
@@ -119,12 +121,14 @@ public class MainActivity extends BaseActivity implements ReplaceFragmentCallBac
                 break;
             //社团活动
             case R.id.nav_clubActivity:
-                replaceFragment(new ClubActivityFragment());
+//                replaceFragment(new ClubActivityFragment());
+                replaceFragment(new ClubActivityFragmentPTR());
                 drawer_layout.closeDrawers();
                 break;
             //社团通知
             case R.id.nav_clubNotification:
-                replaceFragment(new ClubNotificationFragment());
+//                replaceFragment(new ClubNotificationFragment());
+                replaceFragment(new ClubNotificationFragmentPTR());
                 drawer_layout.closeDrawers();
                 break;
             //首页
@@ -150,7 +154,7 @@ public class MainActivity extends BaseActivity implements ReplaceFragmentCallBac
 
     @Override
     public void replaceActivityInfo(ClubActivity clubActivity) {
-        ClubActivityInfoFragment clubActivityInfoFragment=ClubActivityInfoFragment.getInstance(clubActivity.getActivityInfo());
+        ClubActivityInfoFragment clubActivityInfoFragment=ClubActivityInfoFragment.getInstance(clubActivity);
         replaceFragment(clubActivityInfoFragment);
     }
 

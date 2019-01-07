@@ -3,6 +3,7 @@ package com.example.haoza.appsclub.customObject;
 
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobDate;
+import cn.bmob.v3.datatype.BmobRelation;
 
 /**
  * 社团活动表
@@ -27,7 +28,7 @@ public class ClubActivity extends BmobObject {
     /**
      * 活动人员
      */
-    private User activityUser;
+    private BmobRelation activityUser;
 
     public String getActivityTitle() {
         return activityTitle;
@@ -37,11 +38,11 @@ public class ClubActivity extends BmobObject {
         this.activityTitle = activityTitle;
     }
 
-    public User getActivityUser() {
+    public BmobRelation getActivityUser() {
         return activityUser;
     }
 
-    public void setActivityUser(User activityUser) {
+    public void setActivityUser(BmobRelation activityUser) {
         this.activityUser = activityUser;
     }
 

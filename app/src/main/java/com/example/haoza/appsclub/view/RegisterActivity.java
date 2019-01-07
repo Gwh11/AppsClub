@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,13 +19,18 @@ import android.widget.Toast;
 
 import com.example.haoza.appsclub.BaseActivity;
 import com.example.haoza.appsclub.R;
+import com.example.haoza.appsclub.adapter.InfoAdapter;
+import com.example.haoza.appsclub.customObject.Department;
 import com.example.haoza.appsclub.customObject.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobSMS;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
@@ -38,8 +45,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private EditText et_user_VCode;
     private Button btn_sendVCode;
     private Button btn_zhuce;
+    private Spinner sp_user_department;
     /*private Spinner spi_gender;*/
     /*private int anInt=0;*/
+    private List<Department> departmentList=new ArrayList<>();
+    List<String> departNameList=new ArrayList<>();
 
     public static void actonStart(Context context) {
         Intent intent = new Intent(context, RegisterActivity.class);
@@ -53,6 +63,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        DepartmentQuery();
         initView();
     }
 
@@ -60,6 +71,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         et_user_name = (EditText) findViewById(R.id.et_user_name);
         et_user_major = (EditText) findViewById(R.id.et_user_major);
         et_user_class = (EditText) findViewById(R.id.et_user_class);
+        sp_user_department = findViewById(R.id.sp_user_department);
+        sp_user_department.setAdapter(new ArrayAdapter<String>(RegisterActivity.this,android.R.layout.simple_list_item_1,departNameList));
         et_user_password = (EditText) findViewById(R.id.et_user_password);
         et_user_password_again = (EditText) findViewById(R.id.et_user_password_again);
         et_user_tel = (EditText) findViewById(R.id.et_user_tel);
@@ -84,6 +97,31 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
             }
         });*/
+    }
+
+    /**
+     * 查询
+     * Department
+     */
+    private void DepartmentQuery() {
+        BmobQuery<Department> departmentBmobQuery = new BmobQuery<Department>();
+        departmentBmobQuery.findObjects(new FindListener<Department>() {
+            @Override
+            public void done(List<Department> object, BmobException e) {
+                if (e == null) {
+                    departmentList = object;
+                    for(Department department:departmentList){
+                        departNameList.add(department.getDepartName());
+                    }
+//                    Snackbar.make(view, "查询成功：" + object.size(), Snackbar.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "查询成功："+ object.size(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("BMOB", e.toString());
+//                    Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -174,7 +212,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         editor.putBoolean("isFirst",true);
         editor.putString("phone",tel);
         editor.putString("password",again);
-        signOrLogin(name,major,user_class,again,tel,VCode);
+        signOrLogin(name,major,user_class,departmentList.get(sp_user_department.getSelectedItemPosition()),again,tel,VCode);
 
     }
 
@@ -188,7 +226,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
      * @param code
      *
      */
-    private void signOrLogin(String name,String major,String userClass,String password,String phone,String code) {
+    private void signOrLogin(String name,String major,String userClass,Department department,String password,String phone,String code) {
         User user = new User();
         //设置手机号码（必填）
         user.setMobilePhoneNumber(phone);
@@ -200,6 +238,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         user.setGender(gender);*/
         //设置专业
         user.setMajor(major);
+        //设置部门
+        user.setDepartmentId(department);
+        //设置职位
+        user.setPost("成员");
         //设置班级
         user.setUserClass(userClass);
         user.signOrLogin(code, new SaveListener<User>() {
