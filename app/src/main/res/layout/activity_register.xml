@@ -76,7 +76,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:text="例：移动应用软件开发"
+                android:text="例：移动应用开发"
                 android:textSize="10sp"
                 android:textColor="#4883FF"/>
             <TextView
@@ -87,11 +87,22 @@
                 android:textSize="10sp"
                 android:textColor="#4883FF"/>
         </LinearLayout>
-        <Spinner
-            android:id="@+id/sp_user_department"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            ></Spinner>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_sp_departName"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:hint="请选择部门:"
+                android:gravity="left|center"/>
+            <Spinner
+                android:id="@+id/sp_user_department_00000"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                ></Spinner>
+        </LinearLayout>
         <EditText
             android:id="@+id/et_user_password"
             android:layout_width="match_parent"

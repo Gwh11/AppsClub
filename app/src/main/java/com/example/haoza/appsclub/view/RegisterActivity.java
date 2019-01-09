@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.haoza.appsclub.BaseActivity;
@@ -35,7 +36,7 @@ import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
 
-public class RegisterActivity extends BaseActivity implements View.OnClickListener {
+public class RegisterActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
     private EditText et_user_name;
     private EditText et_user_major;
     private EditText et_user_class;
@@ -51,6 +52,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private List<Department> departmentList=new ArrayList<>();
     List<String> departNameList=new ArrayList<>();
     private int department_position;
+    private TextView tv_sp_departName;
+    private ArrayAdapter<String> arrayAdapter;
 
     public static void actonStart(Context context) {
         Intent intent = new Intent(context, RegisterActivity.class);
@@ -72,19 +75,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         et_user_name = (EditText) findViewById(R.id.et_user_name);
         et_user_major = (EditText) findViewById(R.id.et_user_major);
         et_user_class = (EditText) findViewById(R.id.et_user_class);
-        sp_user_department = findViewById(R.id.sp_user_department);
-        sp_user_department.setAdapter(new ArrayAdapter<String>(RegisterActivity.this,android.R.layout.simple_list_item_1,departNameList));
-        sp_user_department.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                department_position = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        tv_sp_departName = findViewById(R.id.tv_sp_departName);
+        sp_user_department = findViewById(R.id.sp_user_department_00000);
+        arrayAdapter = new ArrayAdapter<>(RegisterActivity.this, android.R.layout.simple_list_item_1, departNameList);
+        sp_user_department.setAdapter(arrayAdapter);
+        sp_user_department.setOnItemSelectedListener(this);
 
         et_user_password = (EditText) findViewById(R.id.et_user_password);
         et_user_password_again = (EditText) findViewById(R.id.et_user_password_again);
@@ -111,6 +106,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     for(Department department:departmentList){
                         departNameList.add(department.getDepartName());
                     }
+                    arrayAdapter.notifyDataSetChanged();
 //                    Snackbar.make(view, "查询成功：" + object.size(), Snackbar.LENGTH_LONG).show();
                     Toast.makeText(RegisterActivity.this, "查询成功："+ object.size(), Toast.LENGTH_SHORT).show();
                 } else {
@@ -257,6 +253,16 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 }
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        department_position = position;
+        Log.d("departname", "onItemSelected: "+departmentList.get(position).getDepartmentName());
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
     }
 }
 

@@ -83,6 +83,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_login:
+                btn_login.setEnabled(false);
                 submit();
                 break;
             case R.id.tv_forgetPassword:
@@ -134,6 +135,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         editor.commit();
                         finish();
                     } else {
+                        btn_login.setEnabled(true);
                         Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
                         mTvInfo.append("短信登录失败：" + e.getErrorCode() + "-" + e.getMessage() + "\n");
                     }
