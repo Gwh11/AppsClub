@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.example.haoza.appsclub.BaseActivity;
 import com.example.haoza.appsclub.R;
@@ -24,6 +25,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // 初始化 Bmob SDK
         Bmob.initialize(this,"50d6ec06947463dc4bbfc0ee0ed7ed36");
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//设置成全屏模式
         setContentView(R.layout.activity_splash);
 
         mHandler.sendEmptyMessageDelayed(GO_LOGIN, 3000);

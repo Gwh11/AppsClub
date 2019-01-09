@@ -12,6 +12,23 @@
 
     android:textSize="30sp"
     android:textColor="#000"/>
+    <!--<LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/c_activity_dialog_time_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="活动举办时间"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/c_activity_dialog_time"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>-->
+
     <EditText
         android:id="@+id/c_activity_dialog_content"
         android:layout_width="250dp"

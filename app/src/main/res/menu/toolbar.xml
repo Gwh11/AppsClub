@@ -2,15 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/refresh"
-        android:icon="@drawable/refresh"
-        android:title="刷新"
-        app:showAsAction="always"/>
-    <item
-        android:id="@+id/search"
-        android:icon="@drawable/btn_l_target"
-        android:title="搜索"
-        app:showAsAction="always"/>
+        android:id="@+id/userQuit"
+        android:title="退出登录"
+        app:showAsAction="never"/>
+
+
     <item
         android:id="@+id/quit"
         android:title="退出APP"

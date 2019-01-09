@@ -69,7 +69,8 @@ public class ClubMemberFragment extends Fragment {
         eq1 = new BmobQuery<User>();
         // 处理时间查询
         Date date = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         try {
             date = sdf.parse(user.getCreatedAt());
             Log.i("0414", date.toString());
@@ -112,11 +113,22 @@ public class ClubMemberFragment extends Fragment {
         Department department_J=new Department();
         department_J.setObjectId(departments.get(0).getObjectId());
         eq2_J.addWhereEqualTo("departmentId",new BmobPointer(department_J));//departmentName ：技术部
+        eq2_J.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                if(e==null){
+                    Log.d("geshu2", "查询技术部的人个数：" + list.size());
+                }else{
+                    Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+                }
+            }
+        });
 
         //组装 条件1 and 条件2：技术部
         List<BmobQuery<User>> eqList_J=new ArrayList<BmobQuery<User>>();
         eqList_J.add(eq1);
         eqList_J.add(eq2_J);
+
 
         //查询技术部的人
         BmobQuery<User> query_J = new BmobQuery<User>();

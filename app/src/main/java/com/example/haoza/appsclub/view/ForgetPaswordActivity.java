@@ -130,6 +130,7 @@ public class ForgetPaswordActivity extends BaseActivity implements View.OnClickL
                     editor.putString("phone",phone_forget);
                     editor.putString("password",newPassword_again);
                     LoginActivity.actionStart(ForgetPaswordActivity.this);
+                    finish();
                 } else {
                     Toast.makeText(ForgetPaswordActivity.this, "重置失败", Toast.LENGTH_SHORT).show();
                     mTvInfo.append("重置失败：" + e.getErrorCode() + "-" + e.getMessage());

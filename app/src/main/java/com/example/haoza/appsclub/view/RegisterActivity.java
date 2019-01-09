@@ -252,6 +252,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
                     mTvInfo.append("短信注册或登录成功：" + user.getUsername());
                     MainActivity.actionStart(RegisterActivity.this);
+                    finish();
                 } else {
                     Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
                     mTvInfo.append("短信注册或登录失败：" + e.getErrorCode() + "-" + e.getMessage() + "\n");

@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,8 +47,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//设置成全屏模式
         setContentView(R.layout.activity_login);
-        sharedPreferences=PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences=getSharedPreferences("userinfo",MODE_PRIVATE);
         initView();
         isFirst();
     }
@@ -128,6 +131,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         editor.putBoolean("isFirst",true);
                         editor.putString("phone",et_user_id.getText().toString().trim());
                         editor.putString("password",et_user_password.getText().toString().trim());
+                        editor.commit();
+                        finish();
                     } else {
                         Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
                         mTvInfo.append("短信登录失败：" + e.getErrorCode() + "-" + e.getMessage() + "\n");

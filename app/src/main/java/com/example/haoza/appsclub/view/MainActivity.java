@@ -2,7 +2,9 @@ package com.example.haoza.appsclub.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -76,6 +78,23 @@ public class MainActivity extends BaseActivity implements ReplaceFragmentCallBac
         user =BmobUser.getCurrentUser(User.class);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case  R.id.userQuit:
+                        SharedPreferences sp = getSharedPreferences("userinfo", MODE_PRIVATE);
+                        SharedPreferences.Editor editor=sp.edit();
+                        editor.clear().commit();
+                        LoginActivity.actionStart(MainActivity.this);
+                        break;
+                    case R.id.quit:
+                        BaseActivity.ActivityCollector.finishAll();
+                        break;
+                }
+                return false;
+            }
+        });
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -92,6 +111,12 @@ public class MainActivity extends BaseActivity implements ReplaceFragmentCallBac
         FragmentManager fragmentManager= getSupportFragmentManager();
         FragmentTransaction transaction=fragmentManager.beginTransaction();
         transaction.replace(R.id.content_framelayout,fragment);
+        transaction.commit();
+    }
+    private void replaceFragment_item(Fragment fragment){
+        FragmentManager fragmentManager= getSupportFragmentManager();
+        FragmentTransaction transaction=fragmentManager.beginTransaction();
+        transaction.replace(R.id.content_framelayout,fragment).addToBackStack(null);
         transaction.commit();
     }
 
@@ -149,13 +174,13 @@ public class MainActivity extends BaseActivity implements ReplaceFragmentCallBac
     @Override
     public void replaceFragment(MyBmobArticle bmobArticle) {
         HomeInfoFragment homeInfoFragment =HomeInfoFragment.getInstance(bmobArticle.getmUrl());
-        replaceFragment(homeInfoFragment);
+        replaceFragment_item(homeInfoFragment);
     }
 
     @Override
     public void replaceActivityInfo(ClubActivity clubActivity) {
         ClubActivityInfoFragment clubActivityInfoFragment=ClubActivityInfoFragment.getInstance(clubActivity);
-        replaceFragment(clubActivityInfoFragment);
+        replaceFragment_item(clubActivityInfoFragment);
     }
 
     @Override

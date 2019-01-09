@@ -1,6 +1,7 @@
 package com.example.haoza.appsclub.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsListView;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -36,9 +39,12 @@ import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
+import org.w3c.dom.Text;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -61,6 +67,10 @@ public class ClubActivityFragmentPTR extends Fragment {
     private FloatingActionButton c_activity_ptrlist_flgBtn;
     private AlertDialog dialog;
 
+    private int year;
+    private int month;
+    private int day;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -71,6 +81,10 @@ public class ClubActivityFragmentPTR extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.c_activity_ptrlist_frag_layout,null);
+        Calendar calendar=Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
 
         init(view);
         queryData(0, STATE_REFRESH);
@@ -84,6 +98,7 @@ public class ClubActivityFragmentPTR extends Fragment {
 
     @SuppressLint("RestrictedApi")
     private void init(View view) {
+
         c_activity_ptrlist_flgBtn = view.findViewById(R.id.c_activity_ptrlist_FlgBtn);
         if(!user.getPost().equals("成员")){
             c_activity_ptrlist_flgBtn.setVisibility(View.VISIBLE);
@@ -93,6 +108,22 @@ public class ClubActivityFragmentPTR extends Fragment {
                     //添加通知
                     AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
                     final View dialog_view = LayoutInflater.from(getActivity()).inflate(R.layout.c_activity_dialog_layout, null);
+                    /*final TextView dialog_time_tv=dialog_view.findViewById(R.id.c_activity_dialog_time);
+                    dialog_time_tv.setText(year +"年"+(month +1)+"月"+ day +"日");
+                    Button dialog_time_btn=dialog_view.findViewById(R.id.c_activity_dialog_time_btn);
+                    dialog_time_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DatePickerDialog datePickerDialog=new DatePickerDialog(getActivity(), 0, new DatePickerDialog.OnDateSetListener() {
+                                @Override
+                                public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                                    dialog_time_tv.setText(i +"年"+(i1 +1)+"月"+ i2 +"日");
+                                }
+                            },year,month+1,day);
+
+                            datePickerDialog.show();
+                        }
+                    });*/
                     builder.setView(dialog_view);
 
                     builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
@@ -105,6 +136,7 @@ public class ClubActivityFragmentPTR extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                              String dialog_title = ((EditText) dialog_view.findViewById(R.id.c_activity_dialog_title)).getText().toString();
+
                              String dialog_content = ((EditText) dialog_view.findViewById(R.id.c_activity_dialog_content)).getText().toString();
 
                             if(dialog_title.isEmpty()&&dialog_content.isEmpty()){
@@ -112,6 +144,13 @@ public class ClubActivityFragmentPTR extends Fragment {
                             }else {
                                 ClubActivity clubActivity=new ClubActivity();
                                 clubActivity.setActivityTitle(dialog_title);
+
+                                /*try {
+                                    clubActivity.setActivityTime(new BmobDate(new SimpleDateFormat("yyyy-MM-dd").parse(dialog_time_tv.getText().toString())));
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }*/
+
                                 clubActivity.setActivityInfo(dialog_content);
                                 clubActivity.save(new SaveListener<String>() {
                                     @Override
