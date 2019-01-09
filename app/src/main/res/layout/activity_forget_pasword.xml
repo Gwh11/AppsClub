@@ -19,7 +19,7 @@
             android:layout_height="50dp"
             android:hint="新密码"
             android:maxLines="1"
-            android:inputType="number"
+            android:inputType="textPassword"
             />
         <EditText
             android:id="@+id/et_user_password_again_forget"
@@ -27,7 +27,7 @@
             android:layout_height="50dp"
             android:hint="请再次输入密码"
             android:maxLines="1"
-            android:inputType="number"
+            android:inputType="textPassword"
             />
         <EditText
             android:id="@+id/et_user_tel_forget"

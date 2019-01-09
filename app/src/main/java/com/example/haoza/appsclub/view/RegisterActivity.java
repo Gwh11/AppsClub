@@ -50,6 +50,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     /*private int anInt=0;*/
     private List<Department> departmentList=new ArrayList<>();
     List<String> departNameList=new ArrayList<>();
+    private int department_position;
 
     public static void actonStart(Context context) {
         Intent intent = new Intent(context, RegisterActivity.class);
@@ -73,6 +74,18 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         et_user_class = (EditText) findViewById(R.id.et_user_class);
         sp_user_department = findViewById(R.id.sp_user_department);
         sp_user_department.setAdapter(new ArrayAdapter<String>(RegisterActivity.this,android.R.layout.simple_list_item_1,departNameList));
+        sp_user_department.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                department_position = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         et_user_password = (EditText) findViewById(R.id.et_user_password);
         et_user_password_again = (EditText) findViewById(R.id.et_user_password_again);
         et_user_tel = (EditText) findViewById(R.id.et_user_tel);
@@ -82,21 +95,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
         btn_sendVCode.setOnClickListener(this);
         btn_zhuce.setOnClickListener(this);
-        /*spi_gender = (Spinner) findViewById(R.id.spi_gender);
-        spi_gender.setOnClickListener(this);*/
-        /*String[] gender={"男","女"};
-        spi_gender.setAdapter(new ArrayAdapter<String>(RegisterActivity.this,android.R.layout.simple_list_item_1,gender));
-        spi_gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                anInt = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
     }
 
     /**
@@ -212,7 +210,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         editor.putBoolean("isFirst",true);
         editor.putString("phone",tel);
         editor.putString("password",again);
-        signOrLogin(name,major,user_class,departmentList.get(sp_user_department.getSelectedItemPosition()),again,tel,VCode);
+        signOrLogin(name,major,user_class,departmentList.get(department_position),again,tel,VCode);
 
     }
 

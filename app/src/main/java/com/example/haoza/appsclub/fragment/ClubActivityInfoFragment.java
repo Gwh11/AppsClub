@@ -99,11 +99,8 @@ public class ClubActivityInfoFragment extends Fragment implements View.OnClickLi
                 //参加活动
                 ClubActivity activity_add = new ClubActivity();
                 activity_add.setObjectId(clubActivity.getObjectId());
-//将当前用户添加到Post表中的likes字段值中，表明当前用户喜欢该帖子
                 BmobRelation relation_add = new BmobRelation();
-//将当前用户添加到多对多关联中
                 relation_add.add(user);
-//多对多关联指向`post`的`likes`字段
                 activity_add.setActivityUser(relation_add);
                 activity_add.update(new UpdateListener() {
                     @Override
