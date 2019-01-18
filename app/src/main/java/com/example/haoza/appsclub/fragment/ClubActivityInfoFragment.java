@@ -25,7 +25,6 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
-
 public class ClubActivityInfoFragment extends Fragment implements View.OnClickListener {
     private User user=BmobUser.getCurrentUser(User.class);
     private Bundle bundle;

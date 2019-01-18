@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.haoza.appsclub.R;
 import com.example.haoza.appsclub.customObject.Department;
@@ -20,7 +19,6 @@ import java.util.List;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
@@ -74,7 +72,6 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
                         if (e == null) {
                             Snackbar.make(view, "加入该部门", Snackbar.LENGTH_LONG).show();
                             viewHolder.c_info_rec_item_tv_flgBtn.setVisibility(View.GONE);
-//                            notifyDataSetChanged();
                         } else {
                             Log.e("BMOB", e.toString());
                             Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG).show();

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".view.LoginActivity"
     android:gravity="center_horizontal"
-    android:background="@drawable/login">
+    android:background="#87FFAF">
 
     <LinearLayout
         android:layout_width="350dp"

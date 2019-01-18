@@ -1,7 +1,6 @@
 package com.example.haoza.appsclub.fragment;
 
 import android.annotation.SuppressLint;
-import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -24,7 +23,6 @@ import android.widget.Toast;
 
 import com.example.haoza.appsclub.R;
 import com.example.haoza.appsclub.adapter.CNotificationRecItemLayoutAdapter;
-import com.example.haoza.appsclub.customObject.ClubActivity;
 import com.example.haoza.appsclub.customObject.ClubNotification;
 import com.example.haoza.appsclub.customObject.User;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
@@ -244,9 +242,6 @@ public class ClubNotificationFragmentPTR extends Fragment {
             @Override
             public void done(List<ClubNotification> object, BmobException e) {
                 if (e == null) {
-                    /*bmobArticleList=object;
-                    PostAdapter postAdapter =new PostAdapter(getContext(),bmobArticleList,replaceFragmentCallBack);
-                    recycle_view.setAdapter(postAdapter);*/
 
                     if (object.size() > 0) {
 

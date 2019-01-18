@@ -2,14 +2,10 @@ package com.example.haoza.appsclub.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.haoza.appsclub.R;
 import com.example.haoza.appsclub.adapter.HomePtrlistFragLayoutAdapter;
-import com.example.haoza.appsclub.adapter.LoadMoreWrapper;
-import com.example.haoza.appsclub.adapter.PostAdapter;
 import com.example.haoza.appsclub.customObject.MyBmobArticle;
-import com.example.haoza.appsclub.mInterface.EndlessRecyclerOnScrollListener;
 import com.example.haoza.appsclub.mInterface.ReplaceFragmentCallBack;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -45,6 +38,7 @@ import android.widget.ListView;
 
 /**
  * 首页
+ *
  */
 public class HomeFragmentPTR extends Fragment {
 
@@ -68,46 +62,10 @@ public class HomeFragmentPTR extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home_ptrlist_frag_layout,container,false);
-//        initPosts();
         initView(view);
         queryData(0, STATE_REFRESH);
         return view;
     }
-    //初始化数据
-    private void initPosts() {
-//        queryArticle();
-    }
-
-/*    *//**
-     * 初始 查询图文消息
-     *//*
-    private void queryArticle() {
-        BmobQuery<MyBmobArticle> bmobArticleBmobQuery = new BmobQuery<>();
-        // 按时间降序查询
-        bmobArticleBmobQuery.order("-createdAt");
-        // 设置每页数据个数
-        bmobArticleBmobQuery.setLimit(10);
-        bmobArticleBmobQuery.findObjects(new FindListener<MyBmobArticle>() {
-            @Override
-            public void done(List<MyBmobArticle> object, BmobException e) {
-                if (e == null) {
-
-                    curPage = 0;
-                    bmobArticleList.clear();
-                    lastTime = object.get(object.size() - 1).getCreatedAt();
-                    bmobArticleList=object;
-                    curPage++;
-
-                    postAdapter = new PostAdapter(getContext(),bmobArticleList,replaceFragmentCallBack);
-                    loadMoreWrapper = new LoadMoreWrapper(postAdapter);
-                    recycle_view.setAdapter(loadMoreWrapper);
-                    Snackbar.make(view, "查询成功：" + object.size(), Snackbar.LENGTH_LONG).show();
-                } else {
-                    Snackbar.make(view, "查询失败：" + e.getMessage(), Snackbar.LENGTH_LONG).show();
-                }
-            }
-        });
-    }*/
 
     private void initView(View view) {
         mPullToRefreshView = view.findViewById(R.id.PtoR_list);
@@ -234,9 +192,6 @@ public class HomeFragmentPTR extends Fragment {
             @Override
             public void done(List<MyBmobArticle> object, BmobException e) {
                 if (e == null) {
-                    /*bmobArticleList=object;
-                    PostAdapter postAdapter =new PostAdapter(getContext(),bmobArticleList,replaceFragmentCallBack);
-                    recycle_view.setAdapter(postAdapter);*/
 
                     if (object.size() > 0) {
 

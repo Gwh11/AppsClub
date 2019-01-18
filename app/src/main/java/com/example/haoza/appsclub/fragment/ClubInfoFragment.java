@@ -24,6 +24,7 @@ import cn.bmob.v3.listener.FindListener;
 
 /**
  * Apps社团详情
+ *
  */
 public class ClubInfoFragment extends Fragment {
     private RecyclerView c_info_rec_view;

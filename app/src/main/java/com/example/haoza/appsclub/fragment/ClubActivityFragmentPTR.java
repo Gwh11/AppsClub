@@ -1,7 +1,6 @@
 package com.example.haoza.appsclub.fragment;
 
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -11,35 +10,25 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsListView;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.haoza.appsclub.R;
-import com.example.haoza.appsclub.adapter.ActivityAdapter;
 import com.example.haoza.appsclub.adapter.CActivityPtrlistFragLayoutAdapter;
-import com.example.haoza.appsclub.adapter.HomePtrlistFragLayoutAdapter;
 import com.example.haoza.appsclub.customObject.ClubActivity;
-import com.example.haoza.appsclub.customObject.MyBmobArticle;
 import com.example.haoza.appsclub.customObject.User;
 import com.example.haoza.appsclub.mInterface.ReplaceFragmentCallBack;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,6 +46,7 @@ import cn.bmob.v3.listener.SaveListener;
 
 /**
  * 活动详情
+ *
  */
 public class ClubActivityFragmentPTR extends Fragment {
     private User user=BmobUser.getCurrentUser(User.class);
@@ -250,25 +240,6 @@ public class ClubActivityFragmentPTR extends Fragment {
     /**
      * 查询
      */
-/*    private void MQuery() {
-
-        BmobQuery<ClubActivity> categoryBmobQuery = new BmobQuery<>();
-        categoryBmobQuery.findObjects(new FindListener<ClubActivity>() {
-            @Override
-            public void done(List<ClubActivity> object, BmobException e) {
-                if (e == null) {
-                    clubActivityList=object;
-                    ActivityAdapter activityAdapter=new ActivityAdapter(clubActivityList,replaceFragmentCallBack);
-                    c_activity_rec_view.setAdapter(activityAdapter);
-                    Snackbar.make(view, "查询成功：" + object.size(), Snackbar.LENGTH_LONG).show();
-                } else {
-                    Log.e("BMOB", e.toString());
-                    Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG).show();
-                }
-            }
-        });
-    }*/
-
     //分页查询
     private String lastTime = null;
 
@@ -321,9 +292,6 @@ public class ClubActivityFragmentPTR extends Fragment {
             @Override
             public void done(List<ClubActivity> object, BmobException e) {
                 if (e == null) {
-                    /*bmobArticleList=object;
-                    PostAdapter postAdapter =new PostAdapter(getContext(),bmobArticleList,replaceFragmentCallBack);
-                    recycle_view.setAdapter(postAdapter);*/
 
                     if (object.size() > 0) {
 

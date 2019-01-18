@@ -1,21 +1,17 @@
 package com.example.haoza.appsclub.adapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.haoza.appsclub.R;
 import com.example.haoza.appsclub.customObject.ClubActivity;
 import com.example.haoza.appsclub.mInterface.ReplaceFragmentCallBack;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 public class CActivityPtrlistFragLayoutAdapter extends BaseAdapter {
 
@@ -67,33 +63,13 @@ public class CActivityPtrlistFragLayoutAdapter extends BaseAdapter {
             }
         });
 
-
-        /*holder.c_activity_rec_item_btn_ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.c_activity_rec_item_btn_ok.setEnabled(false);
-                holder.c_activity_rec_item_btn_quit.setEnabled(true);
-                //参加活动
-            }
-        });
-        holder.c_activity_rec_item_btn_quit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.c_activity_rec_item_btn_ok.setEnabled(true);
-                holder.c_activity_rec_item_btn_quit.setEnabled(false);
-                //取消参加
-            }
-        });*/
     }
 
     protected class ViewHolder {
         TextView c_activity_rec_item_tv_title;
-        /*Button c_activity_rec_item_btn_ok;
-        Button c_activity_rec_item_btn_quit;*/
+
         public ViewHolder(View view) {
             c_activity_rec_item_tv_title = view.findViewById(R.id.c_activity_rec_item_tv_title);
-            /*c_activity_rec_item_btn_ok = view.findViewById(R.id.c_activity_rec_item_btn_ok);
-            c_activity_rec_item_btn_quit = view.findViewById(R.id.c_activity_rec_item_btn_quit);*/
         }
     }
 }

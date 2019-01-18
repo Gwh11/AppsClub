@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -24,15 +23,12 @@ import com.example.haoza.appsclub.R;
 import com.example.haoza.appsclub.customObject.ClubActivity;
 import com.example.haoza.appsclub.customObject.MyBmobArticle;
 import com.example.haoza.appsclub.customObject.User;
-import com.example.haoza.appsclub.fragment.ClubActivityFragment;
 import com.example.haoza.appsclub.fragment.ClubActivityFragmentPTR;
 import com.example.haoza.appsclub.fragment.ClubActivityInfoFragment;
 import com.example.haoza.appsclub.fragment.ClubInfoFragment;
 import com.example.haoza.appsclub.fragment.ClubMemberFragment;
-import com.example.haoza.appsclub.fragment.ClubNotificationFragment;
 import com.example.haoza.appsclub.fragment.ClubNotificationFragmentPTR;
 import com.example.haoza.appsclub.fragment.HomeFragmentPTR;
-import com.example.haoza.appsclub.fragment.HomeFragmentRec;
 import com.example.haoza.appsclub.fragment.HomeInfoFragment;
 import com.example.haoza.appsclub.mInterface.ReplaceFragmentCallBack;
 
@@ -63,7 +59,6 @@ public class MainActivity extends BaseActivity implements ReplaceFragmentCallBac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-//        replaceFragment(new HomeFragmentRec());
         replaceFragment(new HomeFragmentPTR());
     }
 
@@ -146,19 +141,16 @@ public class MainActivity extends BaseActivity implements ReplaceFragmentCallBac
                 break;
             //社团活动
             case R.id.nav_clubActivity:
-//                replaceFragment(new ClubActivityFragment());
                 replaceFragment(new ClubActivityFragmentPTR());
                 drawer_layout.closeDrawers();
                 break;
             //社团通知
             case R.id.nav_clubNotification:
-//                replaceFragment(new ClubNotificationFragment());
                 replaceFragment(new ClubNotificationFragmentPTR());
                 drawer_layout.closeDrawers();
                 break;
             //首页
             case R.id.nav_home:
-//                replaceFragment(new HomeFragmentRec());
                 replaceFragment(new HomeFragmentPTR());
                 drawer_layout.closeDrawers();
                 break;

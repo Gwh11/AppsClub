@@ -1,6 +1,5 @@
 package com.example.haoza.appsclub.adapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -15,7 +14,6 @@ import com.bumptech.glide.Glide;
 import com.example.haoza.appsclub.R;
 import com.example.haoza.appsclub.customObject.MyBmobArticle;
 import com.example.haoza.appsclub.mInterface.ReplaceFragmentCallBack;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 public class HomePtrlistFragLayoutAdapter extends BaseAdapter {
 

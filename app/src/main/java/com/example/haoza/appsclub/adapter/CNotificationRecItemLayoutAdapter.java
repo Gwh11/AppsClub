@@ -1,6 +1,5 @@
 package com.example.haoza.appsclub.adapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;

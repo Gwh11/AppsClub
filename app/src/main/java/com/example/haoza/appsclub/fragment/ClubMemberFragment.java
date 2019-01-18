@@ -5,17 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
 
 import com.example.haoza.appsclub.R;
-import com.example.haoza.appsclub.adapter.MemberAdapter;
 import com.example.haoza.appsclub.adapter.MemberEXLVAdapter;
 import com.example.haoza.appsclub.customObject.Department;
 import com.example.haoza.appsclub.customObject.User;
@@ -35,19 +31,13 @@ import cn.bmob.v3.listener.FindListener;
 
 /**
  * 花名册
+ *
  */
 public class ClubMemberFragment extends Fragment {
     private User user=BmobUser.getCurrentUser(User.class);
     private ExpandableListView c_member_exlv;
-    private List<User> userList;
     private View view;
     private List<Department> departments;
-
-    private List<User> J_users;//技术部
-    private List<User> M_users;//秘书部
-    private List<User> W_users;//外联部
-    private List<User> X_users;//宣传部
-    private List<User> Z_users;//组织部
 
     private List<List<User>> userlist_List=new ArrayList<List<User>>();
     private BmobQuery<User> eq1;
@@ -272,7 +262,6 @@ public class ClubMemberFragment extends Fragment {
                 if(e==null){
                     userlist_List.add(object);
                     Snackbar.make(view, "查询组织部的人个数：" + object.size(), Snackbar.LENGTH_LONG).show();
-//                    MemberAdapter memberAdapter=new MemberAdapter(userlist_List);
                     MemberEXLVAdapter memberAdapter=new MemberEXLVAdapter(getContext(),userlist_List);
                     c_member_exlv.setAdapter(memberAdapter);
                 }else{
